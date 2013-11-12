@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/.idea/inspectionProfiles/IDE.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/junit-java8-runner" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/junit-java8-runner-tests" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/junit-java8-runner/src/main/java/com/motlin/junit/runners/BlockJUnit4ClassRunner.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/junit-java8-runner/src/main/java/org/junit/runners/model/TestClass.java" charset="ISO-8859-1" />
+  </component>
+</project>
+
