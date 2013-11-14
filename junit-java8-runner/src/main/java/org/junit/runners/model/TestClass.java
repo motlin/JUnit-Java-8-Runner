@@ -19,7 +19,7 @@ import static java.lang.reflect.Modifier.isStatic;
  * @since 4.5
  */
 public class TestClass {
-    protected final Class<?> fClass;
+    private final Class<?> fClass;
     private final Map<Class<? extends Annotation>, List<FrameworkMethod>> fMethodsForAnnotations;
     private final Map<Class<? extends Annotation>, List<FrameworkField>> fFieldsForAnnotations;
 

@@ -44,8 +44,8 @@ public class Java8TestClass extends TestClass {
     protected void scanAnnotatedMembers(Map<Class<? extends Annotation>, List<FrameworkMethod>> methodsForAnnotations, Map<Class<? extends Annotation>, List<FrameworkField>> fieldsForAnnotations) {
         super.scanAnnotatedMembers(methodsForAnnotations, fieldsForAnnotations);
 
-        if (fClass!=null) {
-            getInterfaceMethodsForAnnotations(methodsForAnnotations, fClass);
+        if (this.getJavaClass() != null) {
+            getInterfaceMethodsForAnnotations(methodsForAnnotations, this.getJavaClass());
         }
     }
 
