@@ -28,24 +28,30 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class Java8TestClassTest {
+public class Java8TestClassTest
+{
 
-    public interface Java8SuperInterface {
+    public interface Java8SuperInterface
+    {
         @Test
-        default void superTest() {
+        default void superTest()
+        {
             Assert.assertTrue(true);
         }
     }
 
-    public interface Java8SubInterface extends Java8SuperInterface {
+    public interface Java8SubInterface extends Java8SuperInterface
+    {
         @Test
-        default void subTest() {
+        default void subTest()
+        {
             Assert.assertTrue(true);
         }
     }
 
     @RunWith(Java8Runner.class)
-    public static class Java8Class implements Java8SubInterface {
+    public static class Java8Class implements Java8SubInterface
+    {
     }
 
     @Test

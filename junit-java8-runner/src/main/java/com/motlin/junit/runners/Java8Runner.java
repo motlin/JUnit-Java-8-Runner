@@ -33,7 +33,8 @@ public class Java8Runner extends BlockJUnit4ClassRunner
     }
 
     @Override
-    protected Java8TestClass createTestClass(Class<?> testClass) {
+    protected Java8TestClass createTestClass(Class<?> testClass)
+    {
         return new Java8TestClass(testClass);
     }
 }

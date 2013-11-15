@@ -26,7 +26,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-public class Java8TestClass extends TestClass {
+public class Java8TestClass extends TestClass
+{
     /**
      * Creates a {@code TestClass} wrapping {@code klass}. Each time this
      * constructor executes, the class is scanned for annotations, which can be
@@ -35,29 +36,36 @@ public class Java8TestClass extends TestClass {
      *
      * @param klass
      */
-    public Java8TestClass(Class<?> klass) {
+    public Java8TestClass(Class<?> klass)
+    {
         super(klass);
     }
 
     @Override
-    protected void scanAnnotatedMembers(Map<Class<? extends Annotation>, List<FrameworkMethod>> methodsForAnnotations, Map<Class<? extends Annotation>, List<FrameworkField>> fieldsForAnnotations) {
+    protected void scanAnnotatedMembers(Map<Class<? extends Annotation>, List<FrameworkMethod>> methodsForAnnotations, Map<Class<? extends Annotation>, List<FrameworkField>> fieldsForAnnotations)
+    {
         super.scanAnnotatedMembers(methodsForAnnotations, fieldsForAnnotations);
 
         getInterfaceMethodsForAnnotations(methodsForAnnotations, this.getJavaClass());
     }
 
-    private void getInterfaceMethodsForAnnotations(Map<Class<? extends Annotation>, List<FrameworkMethod>> methodsForAnnotations, Class<?> clazz) {
+    private void getInterfaceMethodsForAnnotations(Map<Class<? extends Annotation>, List<FrameworkMethod>> methodsForAnnotations, Class<?> clazz)
+    {
         List<Class<?>> interfaces = getInterfaces(this.getJavaClass());
-        for (Class<?> eachInterface : interfaces) {
-            for (Method eachMethod : MethodSorter.getDeclaredMethods(eachInterface)) {
-                if (!Modifier.isAbstract(eachMethod.getModifiers())) {
+        for (Class<?> eachInterface : interfaces)
+        {
+            for (Method eachMethod : MethodSorter.getDeclaredMethods(eachInterface))
+            {
+                if (!Modifier.isAbstract(eachMethod.getModifiers()))
+                {
                     addToAnnotationLists(new FrameworkMethod(eachMethod), methodsForAnnotations);
                 }
             }
         }
     }
 
-    private static List<Class<?>> getInterfaces(Class<?> testClass) {
+    private static List<Class<?>> getInterfaces(Class<?> testClass)
+    {
         LinkedList<Class<?>> queue = new LinkedList<Class<?>>();
         queue.add(testClass);
 
@@ -65,13 +73,16 @@ public class Java8TestClass extends TestClass {
         visited.add(testClass);
 
         List<Class<?>> results = new ArrayList<Class<?>>();
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty())
+        {
             Class<?> anInterface = queue.poll();
             results.add(anInterface);
 
             Class<?>[] parentInterfaces = anInterface.getInterfaces();
-            for (Class<?> parentInterface : parentInterfaces) {
-                if (!visited.contains(parentInterface)) {
+            for (Class<?> parentInterface : parentInterfaces)
+            {
+                if (!visited.contains(parentInterface))
+                {
                     visited.add(parentInterface);
                     queue.add(parentInterface);
                 }
