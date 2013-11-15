@@ -17,6 +17,7 @@
 package com.motlin.junit.runners;
 
 import com.motlin.junit.runners.model.Java8TestClass;
+import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 
 public class Java8Runner extends BlockJUnit4ClassRunner

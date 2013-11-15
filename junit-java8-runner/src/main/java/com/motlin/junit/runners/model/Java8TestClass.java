@@ -24,8 +24,7 @@ import org.junit.runners.model.TestClass;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Java8TestClass extends TestClass {
     /**
@@ -44,14 +43,11 @@ public class Java8TestClass extends TestClass {
     protected void scanAnnotatedMembers(Map<Class<? extends Annotation>, List<FrameworkMethod>> methodsForAnnotations, Map<Class<? extends Annotation>, List<FrameworkField>> fieldsForAnnotations) {
         super.scanAnnotatedMembers(methodsForAnnotations, fieldsForAnnotations);
 
-        if (this.getJavaClass() != null) {
-            getInterfaceMethodsForAnnotations(methodsForAnnotations, this.getJavaClass());
-        }
+        getInterfaceMethodsForAnnotations(methodsForAnnotations, this.getJavaClass());
     }
 
-    private void getInterfaceMethodsForAnnotations(Map<Class<? extends Annotation>, List<FrameworkMethod>> methodsForAnnotations, Class<?> clazz)
-    {
-        Class<?>[] interfaces = clazz.getInterfaces();
+    private void getInterfaceMethodsForAnnotations(Map<Class<? extends Annotation>, List<FrameworkMethod>> methodsForAnnotations, Class<?> clazz) {
+        List<Class<?>> interfaces = getInterfaces(this.getJavaClass());
         for (Class<?> eachInterface : interfaces) {
             for (Method eachMethod : MethodSorter.getDeclaredMethods(eachInterface)) {
                 if (!Modifier.isAbstract(eachMethod.getModifiers())) {
@@ -59,9 +55,28 @@ public class Java8TestClass extends TestClass {
                 }
             }
         }
-        for (Class<?> eachInterface : interfaces) {
-            getInterfaceMethodsForAnnotations(methodsForAnnotations, eachInterface);
-        }
     }
 
+    private static List<Class<?>> getInterfaces(Class<?> testClass) {
+        LinkedList<Class<?>> queue = new LinkedList<Class<?>>();
+        queue.add(testClass);
+
+        Set<Class<?>> visited = new HashSet<Class<?>>();
+        visited.add(testClass);
+
+        List<Class<?>> results = new ArrayList<Class<?>>();
+        while (!queue.isEmpty()) {
+            Class<?> anInterface = queue.poll();
+            results.add(anInterface);
+
+            Class<?>[] parentInterfaces = anInterface.getInterfaces();
+            for (Class<?> parentInterface : parentInterfaces) {
+                if (!visited.contains(parentInterface)) {
+                    visited.add(parentInterface);
+                    queue.add(parentInterface);
+                }
+            }
+        }
+        return results;
+    }
 }
