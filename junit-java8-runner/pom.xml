@@ -30,7 +30,7 @@
     <name>JUnit Runner for Java 8 Virtual Extension Methods</name>
 
     <properties>
-        <jdkVersion>1.5</jdkVersion>
+        <jdkVersion>1.8</jdkVersion>
     </properties>
 
     <dependencies>
